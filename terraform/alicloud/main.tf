@@ -65,23 +65,23 @@ resource "alicloud_instance" "demo" {
         Role = "${var.project_name}-ecs"
     }
 
-    connection {
-        # Use default official Centos AMI username to login
-        user = "root"
-        type = "ssh"
-        private_key = "${file("${var.ssh_private_key}")}"
-    }
+    // connection {
+    //     # Use default official Centos AMI username to login
+    //     user = "root"
+    //     type = "ssh"
+    //     private_key = "${file("${var.ssh_private_key}")}"
+    // }
     
-    # Make sure docker is installed and running
-    provisioner "remote-exec" {
-        inline = [
-            "sudo yum -y update",
-            "sudo yum -y install epel-release",
-            "sudo yum -y remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine",
-            "sudo yum -y install yum-utils device-mapper-persistent-data lvm2",
-            "sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo",
-            "sudo yum -y install docker-ce docker-ce-cli containerd.io",
-            "sudo systemctl start docker && sudo systemctl enable docker"
-        ]
-    }
+    // # Make sure docker is installed and running
+    // provisioner "remote-exec" {
+    //     inline = [
+    //         "sudo yum -y update",
+    //         "sudo yum -y install epel-release",
+    //         "sudo yum -y remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine",
+    //         "sudo yum -y install yum-utils device-mapper-persistent-data lvm2",
+    //         "sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo",
+    //         "sudo yum -y install docker-ce docker-ce-cli containerd.io",
+    //         "sudo systemctl start docker && sudo systemctl enable docker"
+    //     ]
+    // }
 }

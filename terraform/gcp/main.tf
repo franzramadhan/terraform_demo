@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = "${file("${var.authentication_file}")}"
+  credentials = "${file("${path.module}/${var.authentication_file}")}"
   project     = "${var.project_id}"
   region      = "${var.region}"
 }
