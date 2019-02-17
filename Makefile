@@ -32,3 +32,5 @@ output_all:
 	true > $(TF_OUTPUT_FILE); for providers in `ls $(TF_DIR)`; do terraform output -state=$(TF_DIR)/$$providers/$(TF_STATE_FILE) | tee -a $(TF_OUTPUT_FILE);done
 
 output: output_all
+
+test: init plan

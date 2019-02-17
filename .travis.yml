@@ -5,6 +5,7 @@ dist: xenial
 
 env:
   - PATH=${PATH}:${TRAVIS_BUILD_DIR}/assets
+  - TF_VERSION=0.11.11
 
 addons:
   apt:
@@ -14,7 +15,7 @@ addons:
 before_install:
   # download terraform binary
   - mkdir -p ${TRAVIS_BUILD_DIR}/assets
-  - curl https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip -o ${TRAVIS_BUILD_DIR}/assets/terraform.zip
+  - curl https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip -o ${TRAVIS_BUILD_DIR}/assets/terraform.zip
   - unzip ${TRAVIS_BUILD_DIR}/assets/terraform.zip -d ${TRAVIS_BUILD_DIR}/assets
   - rm -f ${TRAVIS_BUILD_DIR}/assets/terraform.zip && chmod +x ${TRAVIS_BUILD_DIR}/assets/terraform
 
@@ -23,8 +24,4 @@ before_script:
   - openssl aes-256-cbc -md sha256 -salt -a -d -in ${TRAVIS_BUILD_DIR}/terraform/gcp/${GCP_ENCRYPTED_AUTH_FILE} -out ${TRAVIS_BUILD_DIR}/terraform/gcp/${GCP_DECRYPTED_AUTH_FILE} -pass env:ENCRYPTION_PWD
 
 script:
-  - make init
-  - make plan
-  - make apply
-  - make output
-  - make destroy
+  - make test
