@@ -4,8 +4,9 @@ os: linux
 dist: xenial
 
 env:
-  - PATH=${PATH}:${TRAVIS_BUILD_DIR}/assets
-  - VERSION=0.11.11
+  global:
+    - PATH=${PATH}:${TRAVIS_BUILD_DIR}/assets
+    - VERSION="0.11.11"
 
 addons:
   apt:
