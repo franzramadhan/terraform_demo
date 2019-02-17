@@ -5,7 +5,7 @@ dist: xenial
 
 env:
   - PATH=${PATH}:${TRAVIS_BUILD_DIR}/assets
-  - TF_VERSION=0.11.11
+  - VERSION=0.11.11
 
 addons:
   apt:
@@ -15,7 +15,7 @@ addons:
 before_install:
   # download terraform binary
   - mkdir -p ${TRAVIS_BUILD_DIR}/assets
-  - curl https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip -o ${TRAVIS_BUILD_DIR}/assets/terraform.zip
+  - curl https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_linux_amd64.zip -o ${TRAVIS_BUILD_DIR}/assets/terraform.zip
   - unzip ${TRAVIS_BUILD_DIR}/assets/terraform.zip -d ${TRAVIS_BUILD_DIR}/assets
   - rm -f ${TRAVIS_BUILD_DIR}/assets/terraform.zip && chmod +x ${TRAVIS_BUILD_DIR}/assets/terraform
 
