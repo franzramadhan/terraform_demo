@@ -3,6 +3,9 @@ language: generic
 os: linux
 dist: xenial
 
+env:
+  - PATH=${PATH}:${TRAVIS_BUILD_DIR}/assets
+
 addons:
   apt:
     packages:
