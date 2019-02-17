@@ -4,6 +4,11 @@ provider "alicloud" {
     region = "${var.region}"
 }
 
+# Generate SSH key
+resource "tls_private_key" "demo" {
+  algorithm = "RSA"
+}
+
 # Get centos image id
 data "alicloud_images" "centos" {
     name_regex  = "^centos"
@@ -43,7 +48,8 @@ resource "alicloud_security_group_rule" "allow_ssh" {
 # Create ssh keypair
 resource "alicloud_key_pair" "demo" {
     key_name = "${var.project_name}-keypair"
-    public_key = "${file("${var.ssh_public_key}")}"
+    #public_key = "${file("${var.ssh_public_key}")}"
+    public_key = "${tls_private_key.demo.public_key_openssh}"
 }
 
 resource "alicloud_instance" "demo" {

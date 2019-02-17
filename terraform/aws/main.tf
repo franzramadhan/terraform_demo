@@ -4,6 +4,11 @@ provider "aws" {
     region = "${var.region}"
 }
 
+# Generate SSH key
+resource "tls_private_key" "demo" {
+  algorithm = "RSA"
+}
+
 # Get Centos AMI ID
 data "aws_ami" "centos" {
     owners = ["679593333241"] 
@@ -28,7 +33,8 @@ data "aws_ami" "centos" {
 # Generate key pair
 resource "aws_key_pair" "demo" {
     key_name = "${var.project_name}-demo"
-    public_key = "${file("${var.ssh_public_key}")}"
+    #public_key = "${file("${var.ssh_public_key}")}"
+    public_key = "${tls_private_key.demo.public_key_openssh}"
 }
 
 # Allow ssh access
