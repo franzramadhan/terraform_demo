@@ -1,5 +1,5 @@
 provider "digitalocean" {
-    token = "${var.token}"
+    token = "${var.do_token}"
 }
 
 # Get centos7 image

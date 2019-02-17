@@ -1,4 +1,4 @@
-variable "token" {}
+variable "linode_token" {}
 variable "root_pass" {}
 variable "project_name" {
     default = "terraform_linode"

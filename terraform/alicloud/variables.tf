@@ -1,5 +1,5 @@
-variable "access_key" {}
-variable "secret_key" {}
+variable "alicloud_access_key" {}
+variable "alicloud_secret_key" {}
 variable "region" {
     default = "ap-southeast-5"
 }

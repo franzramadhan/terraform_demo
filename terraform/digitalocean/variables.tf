@@ -1,4 +1,4 @@
-variable "token" {}
+variable "do_token" {}
 variable "project_name" {
     default = "terraform-digitalocean"
 }
