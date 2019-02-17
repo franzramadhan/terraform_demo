@@ -17,7 +17,7 @@ before_install:
 
 before_script:
   # decrypt encrypted GCP auth file
-  - openssl aes-256-cbc -salt -a -d -in ${TRAVIS_BUILD_DIR}/terraform/gcp/${GCP_ENCRYPTED_AUTH_FILE} -out ${TRAVIS_BUILD_DIR}/terraform/gcp/${GCP_DECRYPTED_AUTH_FILE} -pass env:ENCRYPTION_PWD
+  - openssl aes-256-cbc -md sha256 -salt -a -d -in ${TRAVIS_BUILD_DIR}/terraform/gcp/${GCP_ENCRYPTED_AUTH_FILE} -out ${TRAVIS_BUILD_DIR}/terraform/gcp/${GCP_DECRYPTED_AUTH_FILE} -pass env:ENCRYPTION_PWD
 
 script:
   - make init
