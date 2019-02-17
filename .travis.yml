@@ -25,3 +25,6 @@ before_script:
 script:
   - make init
   - make plan
+  - make apply
+  - make output
+  - make destroy
