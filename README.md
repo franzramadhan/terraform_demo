@@ -1,4 +1,6 @@
-# Terraform examples [![Build Status](https://travis-ci.org/franzramadhan/terraform_demo.svg?branch=master)](https://travis-ci.org/franzramadhan/terraform_demo)
+# Terraform examples 
+
+[![Build Status](https://travis-ci.org/franzramadhan/terraform_demo.svg?branch=master)](https://travis-ci.org/franzramadhan/terraform_demo)
 
 Collection of terraform simple examples for provisioning single instance ( 1-tier ) in some public cloud providers
 
