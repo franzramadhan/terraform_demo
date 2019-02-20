@@ -67,6 +67,9 @@ resource "aws_instance" "demo" {
     instance_type = "${var.instance_type}"
     associate_public_ip_address = "${var.has_public_ip}"
     key_name = "${aws_key_pair.demo.id}"
+    root_block_device {
+        delete_on_termination = true
+    }
 
     vpc_security_group_ids = ["${aws_security_group.demo.id}"]
     
