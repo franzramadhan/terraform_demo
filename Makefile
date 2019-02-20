@@ -9,7 +9,7 @@ init:
 	for providers in `ls $(TF_DIR)`; do TF_DATA_DIR=$(TF_DIR)/$$providers/.terraform terraform init -force-copy $(TF_DIR)/$$providers/;done
 
 remote_state_plan:
-	TF_DATA_DIR=$(TF_DIR)/state/.terraform terraform plan -state=$(TF_DIR)/state/$(TF_STATE_FILE) --var-file=$(TF_DIR)/state/$(TF_VARS_FILE) $(TF_DIR)/state/
+	TF_DATA_DIR=$(TF_DIR)/state/.terraform terraform plan -state=$(TF_DIR)/state/$(TF_STATE_FILE) $(TF_DIR)/state/
 
 remote_state_apply:
 	TF_DATA_DIR=$(TF_DIR)/state/.terraform terraform apply --auto-approve -state=$(TF_DIR)/state/$(TF_STATE_FILE) --var-file=$(TF_DIR)/state/$(TF_VARS_FILE) $(TF_DIR)/state/
