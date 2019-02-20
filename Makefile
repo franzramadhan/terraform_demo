@@ -15,13 +15,13 @@ remote_state_apply:
 	TF_DATA_DIR=$(TF_DIR)/state/.terraform terraform apply --auto-approve -state=$(TF_DIR)/state/$(TF_STATE_FILE) $(TF_DIR)/state/
 
 plan:
-	for providers in `ls $(TF_DIR)`; do TF_DATA_DIR=$(TF_DIR)/$$providers/.terraform terraform plan -state=$(TF_DIR)/$$providers/$(TF_STATE_FILE) $(TF_DIR)/$$providers;done
+	for providers in `ls $(TF_DIR)`; do TF_DATA_DIR=$(TF_DIR)/$$providers/.terraform terraform plan $(TF_DIR)/$$providers;done
 
 apply:
-	for providers in `ls $(TF_DIR)`; do TF_DATA_DIR=$(TF_DIR)/$$providers/.terraform terraform apply --auto-approve -state=$(TF_DIR)/$$providers/$(TF_STATE_FILE) $(TF_DIR)/$$providers;done
+	for providers in `ls $(TF_DIR)`; do TF_DATA_DIR=$(TF_DIR)/$$providers/.terraform terraform apply --auto-approve $(TF_DIR)/$$providers;done
 
 destroy:
-	for providers in `ls $(TF_DIR)`; do TF_DATA_DIR=$(TF_DIR)/$$providers/.terraform terraform destroy --auto-approve -state=$(TF_DIR)/$$providers/$(TF_STATE_FILE) $(TF_DIR)/$$providers;done;rm -f $(TF_OUTPUT_FILE);
+	for providers in `ls $(TF_DIR)`; do TF_DATA_DIR=$(TF_DIR)/$$providers/.terraform terraform destroy --auto-approve $(TF_DIR)/$$providers;done;rm -f $(TF_OUTPUT_FILE);
 
 init_all: init
 
