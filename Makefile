@@ -14,6 +14,9 @@ remote_state_plan:
 remote_state_apply:
 	TF_DATA_DIR=$(TF_DIR)/state/.terraform terraform apply --auto-approve -state=$(TF_DIR)/state/$(TF_STATE_FILE) $(TF_DIR)/state/
 
+validate: 
+	for providers in `ls $(TF_DIR)`; do TF_DATA_DIR=$(TF_DIR)/$$providers/.terraform terraform validate $(TF_DIR)/$$providers;done
+
 plan:
 	for providers in `ls $(TF_DIR)| grep -Ev "state|modules"`; do TF_DATA_DIR=$(TF_DIR)/$$providers/.terraform terraform plan $(TF_DIR)/$$providers;done
 
@@ -39,4 +42,4 @@ output_all:
 
 output: output_all
 
-test: init remote_state_plan remote_state_apply plan
+test: init validate remote_state_plan remote_state_apply plan
